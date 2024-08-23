@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  browser:
+    build: ./docker/browser
+    ports:
+      - "5900:5900"  # VNC port
+      - "6080:6080"  # Web interface port
+    volumes:
+      - /dev/shm:/dev/shm  # To improve Chrome's performance
+    environment:
+      - VNC_PASSWORD=password123  # Set a password for VNC
+    cap_add:
+      - SYS_ADMIN
+    shm_size: 1gb
+  
+  crawlee:
+    image: node:16  # Or another base image with Node.js
+    volumes:
+      - ./crawlee:/app
+    working_dir: /app
+    command: ["node", "script.js"]  # Run your Crawlee script here
