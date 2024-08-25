@@ -40,4 +40,4 @@ services:
     shm_size: 1gb
     #entrypoint: ["/app/docker-entrypoint.sh"]
     #command: sh -c "/usr/bin/vncserver :1 -geometry 1280x800 -depth 24 && node script.js"  # Start VNC server and run your Crawlee script
-    command: ["node", "script.js"]  # Run your Crawlee script here
+    command: node /app/index.js

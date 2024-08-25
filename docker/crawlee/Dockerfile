@@ -19,7 +19,8 @@ RUN apt-get install -y curl && \
     apt-get install -y nodejs
 
 # Set environment variables for Puppeteer
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
 # # Install Playwright dependencies
 # RUN apt-get install -y \
@@ -32,11 +33,15 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 #     && npm install -g playwright
 
 # Install Playwright and its dependencies
+RUN npm install -g playwright && \
+    playwright install && \
+    playwright install-deps
+
 RUN npx playwright install && \
     npx playwright install-deps
 
 # Install Crawlee or your script dependencies
 WORKDIR /app
-COPY ../../src/package*.json ./
-RUN npm install
+# COPY ../../src/package*.json ./
+# RUN npm install
 
