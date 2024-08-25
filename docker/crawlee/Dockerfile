@@ -18,9 +18,14 @@ RUN apt-get install -y curl && \
     curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
+USER root
+
 # Set environment variables for Puppeteer
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
 ENV PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+
+# somehow we install playwright in ubuntu user home directory
+ENV PLAYWRIGHT_BROWSERS_PATH /home/ubuntu/.cache/ms-playwright
 
 # # Install Playwright dependencies
 # RUN apt-get install -y \
@@ -39,6 +44,8 @@ RUN npm install -g playwright && \
 
 RUN npx playwright install && \
     npx playwright install-deps
+
+COPY ./docker/crawlee/entrypoint-prep-playwright.sh /
 
 # Install Crawlee or your script dependencies
 WORKDIR /app

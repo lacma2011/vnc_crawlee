@@ -13,14 +13,12 @@ docker-compose build
 
 
 # II. while services are up, run crawlee script inside container
-    
-# run vnc client on your machine and go to the container
 
-  cd /app
-  npx playwright install
-  npx playwright install-deps
 
-#TODO: make that install in the image build, since it seems to have failed
+# see if this is already running from docker-compose command
+
+# make it visible in vnc terminal
+
 
 # launch a crawlee script in folder /app (aka ./src)
 
