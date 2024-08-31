@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Scripts</title>
+</head>
+<body>
+    <h1>Choose an Action</h1>
+    <button id="script1">Run Script 1</button>
+    <button id="script2">Run Script 2</button>
+
+    <script>
+        document.getElementById('script1').addEventListener('click', () => {
+            window.runScript1();
+        });
+
+        document.getElementById('script2').addEventListener('click', () => {
+            window.runScript2();
+        });
+    </script>
+</body>
+</html>
